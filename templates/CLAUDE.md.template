@@ -1,0 +1,56 @@
+# {{PROJECT_NAME}} — Android Project
+
+## Project Overview
+- **Package**: `{{PACKAGE_NAME}}`
+- **Architecture**: Clean Architecture based on [NowInAndroid](https://github.com/android/nowinandroid)
+- **Language**: Kotlin, Java 17
+- **UI**: Jetpack Compose (Material 3)
+- **DI**: Hilt
+- **Async**: Coroutines + Flow
+- **Navigation**: Navigation3 (Serializable NavKeys)
+- **Database**: Room (KSP)
+- **Network**: Retrofit2 + OkHttp
+- **Image**: Coil
+
+## Module Structure
+
+| Module | Role |
+|--------|------|
+| `:app` | Entry point, navigation wiring |
+| `:feature:*/api` | NavKey exports only |
+| `:feature:*/impl` | ViewModel, Screen, feature logic |
+| `:core:model` | Domain data classes |
+| `:core:domain` | UseCases, Repository interfaces |
+| `:core:data` | Repository impl, Hilt modules |
+| `:core:database` | Room DAOs, Entities |
+| `:core:network` | Retrofit services, DTOs |
+| `:core:datastore` | Proto DataStore |
+| `:core:designsystem` | Theme, Material 3 components |
+| `:core:ui` | Shared screen-level composables |
+| `:core:navigation` | Navigator, NavKey interface |
+
+## Dependency Direction
+```
+:app → :feature:*/api, :feature:*/impl
+:feature:*/impl → :core:ui, :core:domain, :core:data, :core:designsystem
+:feature:*/api → :core:navigation
+:core:data → :core:database, :core:network, :core:datastore, :core:model
+:core:domain → :core:data, :core:model
+```
+
+## Key Patterns
+
+- **ViewModel**: `@HiltViewModel` + `StateFlow` with `WhileSubscribed(5_000)`
+- **Repository**: Offline-first (Room reads, background sync)
+- **UseCase**: `operator fun invoke(): Flow<T>`, pure Kotlin
+- **Navigation**: `@Serializable` NavKeys, Navigation3
+- **DI**: `@Binds` for interfaces, `@Provides` for factories
+
+## Agent Delegation
+
+| Task | Agent |
+|------|-------|
+| Architecture design | architect |
+| Code implementation | coder |
+| Code review | code-reviewer |
+| Testing | tester |

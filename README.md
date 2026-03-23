@@ -25,7 +25,7 @@ This creates a ready-to-build project with:
 - Hilt DI wiring
 - `.claude/` with all rules, skills, and agents
 
-**You just add features by copying the `feature/home/` pattern.**
+> **You just add features by copying the `feature/home/` pattern.**
 
 <details>
 <summary><b>Generated project structure (click to expand)</b></summary>
@@ -205,17 +205,6 @@ READ:  Room DAO → Repository → UseCase → ViewModel (StateFlow) → Compose
 WRITE: UI event → ViewModel → Repository → DataStore/Room
 SYNC:  WorkManager → SyncWorker → Network → Room (background)
 ```
-
-## How It Differs from Alternatives
-
-| | [dpconde/claude-android-skill](https://github.com/dpconde/claude-android-skill) | **nowinandroid-agent-kit** |
-|---|---|---|
-| Skills | 1 skill, 5 references | 8 skills, 8 rules, 4 agents |
-| Animation | None | 7 patterns from NIA source |
-| Testing | Basic | Fake repos, Turbine, screenshot tests |
-| Navigation | Navigation Compose | Navigation3 (latest) |
-| Agents | None | architect, coder, reviewer, tester |
-| AI Tools | Claude only | Claude, Gemini, Cursor, Copilot |
 
 ## NowInAndroid Version
 

@@ -16,14 +16,58 @@ cd nowinandroid-agent-kit
 ./generate.sh --name "MyApp" --package "com.example.myapp" --output ~/Projects/MyApp
 ```
 
-This creates a ready-to-build project with:
-- 14 modules (app, 10 core, 2 feature, 1 sync)
-- Sample Home feature (ViewModel + Screen + Repository + UseCase)
-- Design system (Material 3 theme, components)
-- Network module (Retrofit + OkHttp + Kotlinx Serialization)
-- Database module (Room + DAOs + offline-first)
-- Hilt DI wiring
-- `.claude/` with all rules, skills, and agents
+```
+nowinandroid-agent-kit — Project Generator
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Project:  MyApp
+  Package:  com.example.myapp
+  Output:   /Users/user/Projects/MyApp
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+==> Copying project scaffold...
+✓ Scaffold copied
+
+==> Replacing placeholders...
+✓ Placeholders replaced
+
+==> Organizing source files into package directories...
+✓ Sources organized
+
+==> Setting up AI agent harness (.claude/)...
+✓ AI harness configured (8 rules, 8 skills, 4 agents)
+
+==> Initializing git repository...
+✓ Git initialized
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Project generated successfully!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  cd ~/Projects/MyApp
+
+  14 modules created:
+  ├── app                     Entry point + Bottom Navigation
+  ├── core/model              Domain data classes (pure Kotlin)
+  ├── core/domain             UseCases (business logic)
+  ├── core/data               Repository impl (offline-first)
+  ├── core/database           Room DAOs + Entities
+  ├── core/network            Retrofit + OkHttp + Json
+  ├── core/datastore          DataStore preferences
+  ├── core/designsystem       Material 3 Theme + Components
+  ├── core/ui                 Shared Composables
+  ├── core/navigation         NavHost + Routes
+  ├── core/common             Dispatcher DI + Utilities
+  ├── core/testing            Test utilities + Fakes
+  ├── feature/home            ★ Sample feature (copy this!)
+  ├── feature/settings        Settings placeholder
+  └── sync/work               WorkManager background sync
+
+  Next steps:
+  1. Open in Android Studio
+  2. Replace BASE_URL in core/network/NetworkModule.kt
+  3. Add your features by copying feature/home/ pattern
+  4. Run: claude  (AI agent with full NIA context)
+```
 
 > **You just add features by copying the `feature/home/` pattern.**
 

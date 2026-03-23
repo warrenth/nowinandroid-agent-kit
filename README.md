@@ -6,6 +6,27 @@ All rules and skills are derived from **actual NowInAndroid source code analysis
 
 ## Quick Start
 
+### Option 0: Generate a full project (one click)
+
+Generate a complete multi-module Android project with AI agent harness pre-configured:
+
+```bash
+git clone https://github.com/warrenth/nowinandroid-agent-kit.git
+cd nowinandroid-agent-kit
+./generate.sh --name "MyApp" --package "com.example.myapp" --output ~/Projects/MyApp
+```
+
+This creates a ready-to-build project with:
+- 14 modules (app, 10 core, 2 feature, 1 sync)
+- Sample Home feature (ViewModel + Screen + Repository + UseCase)
+- Design system (Material 3 theme, components)
+- Network module (Retrofit + OkHttp + Kotlinx Serialization)
+- Database module (Room + DAOs + offline-first)
+- Hilt DI wiring
+- `.claude/` with all rules, skills, and agents
+
+**You just add features by copying the `feature/home/` pattern.**
+
 ### Option 1: Copy what you need (easiest)
 
 Browse the `skills/` and `rules/` directories and copy individual files to your project:

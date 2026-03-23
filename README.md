@@ -4,6 +4,8 @@
 
 **One command to scaffold a production-ready Android project with AI agent harness.**
 
+Project setup, UI-ready structure, and .claude harness — all in one step.
+
 Based on [NowInAndroid](https://github.com/android/nowinandroid) by Google.
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)

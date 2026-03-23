@@ -27,6 +27,89 @@ This creates a ready-to-build project with:
 
 **You just add features by copying the `feature/home/` pattern.**
 
+<details>
+<summary><b>Generated project structure (click to expand)</b></summary>
+
+```
+MyApp/
+├── app/
+│   ├── build.gradle.kts
+│   └── src/main/
+│       ├── AndroidManifest.xml
+│       └── kotlin/com/example/myapp/
+│           ├── MainApplication.kt          ← @HiltAndroidApp
+│           ├── MainActivity.kt             ← @AndroidEntryPoint
+│           └── AppNavHost.kt               ← Bottom Nav + NavHost routing
+│
+├── core/
+│   ├── model/                              ← Domain data classes (pure Kotlin)
+│   │   └── SampleItem.kt, UserData.kt
+│   │
+│   ├── domain/                             ← UseCases (business logic)
+│   │   └── GetSampleItemsUseCase.kt
+│   │
+│   ├── data/                               ← Repository implementations
+│   │   ├── repository/
+│   │   │   ├── SampleRepository.kt         ← Interface
+│   │   │   └── OfflineFirstSampleRepository.kt  ← Impl (Room + Retrofit)
+│   │   └── di/
+│   │       └── DataModule.kt               ← @Binds + @Provides
+│   │
+│   ├── database/                           ← Room
+│   │   ├── AppDatabase.kt
+│   │   ├── DatabaseModule.kt               ← Hilt @Provides
+│   │   ├── dao/SampleItemDao.kt            ← @Dao (Flow queries)
+│   │   └── model/SampleItemEntity.kt       ← @Entity + mappers
+│   │
+│   ├── network/                            ← Retrofit + OkHttp
+│   │   ├── NetworkModule.kt                ← OkHttp, Retrofit, Json
+│   │   ├── SampleApi.kt                    ← @GET/@POST endpoints
+│   │   └── model/NetworkSampleItem.kt      ← DTO + asExternalModel()
+│   │
+│   ├── datastore/                          ← DataStore preferences
+│   ├── designsystem/                       ← Material 3 theme + components
+│   │   ├── theme/
+│   │   │   ├── Theme.kt                    ← AppTheme (dynamic color)
+│   │   │   └── Type.kt                     ← Typography
+│   │   └── component/
+│   │       ├── LoadingWheel.kt             ← Reusable loading indicator
+│   │       └── DynamicAsyncImage.kt        ← Coil image with loading state
+│   │
+│   ├── navigation/                         ← NavHost, route definitions
+│   ├── ui/                                 ← Shared screen composables
+│   ├── common/                             ← Dispatcher DI, utilities
+│   │   └── Dispatchers.kt                  ← @Dispatcher(IO/Default)
+│   └── testing/                            ← Test utilities, Fakes
+│
+├── feature/
+│   ├── home/                               ← ★ Sample feature (copy this!)
+│   │   ├── api/
+│   │   │   └── HomeNavKey.kt               ← @Serializable NavKey
+│   │   └── impl/
+│   │       ├── HomeViewModel.kt            ← @HiltViewModel + StateFlow
+│   │       └── HomeScreen.kt               ← Stateful + Stateless pair
+│   │
+│   └── settings/
+│       └── impl/
+│           └── SettingsScreen.kt           ← Simple settings placeholder
+│
+├── sync/
+│   └── work/                               ← WorkManager background sync
+│
+├── .claude/                                ← AI Agent Harness
+│   ├── rules/     (8 rules)               ← Always-loaded constraints
+│   ├── skills/    (8 skills)              ← On-demand knowledge
+│   └── agents/    (4 agents)              ← Autonomous executors
+│
+├── CLAUDE.md                               ← Project context for AI tools
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle/libs.versions.toml              ← Version catalog
+└── gradle.properties                       ← Build optimization flags
+```
+
+</details>
+
 ### Option 1: Copy what you need (easiest)
 
 Browse the `skills/` and `rules/` directories and copy individual files to your project:

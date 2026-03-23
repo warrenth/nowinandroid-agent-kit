@@ -1,270 +1,180 @@
+<div align="center">
+
 # nowinandroid-agent-kit
 
-AI agent skills, rules, and tools for Android development based on [NowInAndroid](https://github.com/android/nowinandroid) architecture. Works with **Claude Code**, **Gemini CLI**, **Cursor**, and **Copilot**.
+**One command to scaffold a production-ready Android project with AI agent harness.**
 
-All rules and skills are derived from **actual NowInAndroid source code analysis**, not generic best practices.
+Based on [NowInAndroid](https://github.com/android/nowinandroid) by Google.
 
-## Quick Start
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
+[![Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
+[![Hilt](https://img.shields.io/badge/Hilt-DI-34A853?logo=google&logoColor=white)](https://dagger.dev/hilt/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-### Option 0: Generate a full project (one click)
+**Works with:** Claude Code · Gemini CLI · Cursor · Copilot
 
-Generate a complete multi-module Android project with AI agent harness pre-configured:
+</div>
+
+---
+
+## Generate a Project
 
 ```bash
 git clone https://github.com/warrenth/nowinandroid-agent-kit.git
 cd nowinandroid-agent-kit
-./generate.sh --name "MyApp" --package "com.example.myapp" --output ~/Projects/MyApp
+./generate.sh
 ```
 
 ```
-nowinandroid-agent-kit — Project Generator
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Project:  MyApp
-  Package:  com.example.myapp
-  Output:   /Users/user/Projects/MyApp
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Project name: MyApp
+Package name: com.example.myapp
+Output directory: ~/Projects/MyApp
 
-==> Copying project scaffold...
-✓ Scaffold copied
+==> Copying project scaffold...          ✓
+==> Replacing placeholders...            ✓
+==> Organizing source files...           ✓
+==> Setting up AI agent harness...       ✓ (8 rules, 8 skills, 4 agents)
+==> Initializing git repository...       ✓
 
-==> Replacing placeholders...
-✓ Placeholders replaced
-
-==> Organizing source files into package directories...
-✓ Sources organized
-
-==> Setting up AI agent harness (.claude/)...
-✓ AI harness configured (8 rules, 8 skills, 4 agents)
-
-==> Initializing git repository...
-✓ Git initialized
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✓ Project generated successfully!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  cd ~/Projects/MyApp
-
-  14 modules created:
+  14 modules ready:
   ├── app                     Entry point + Bottom Navigation
-  ├── core/model              Domain data classes (pure Kotlin)
-  ├── core/domain             UseCases (business logic)
-  ├── core/data               Repository impl (offline-first)
+  ├── core/model              Domain data classes
+  ├── core/domain             UseCases
+  ├── core/data               Repository (offline-first)
   ├── core/database           Room DAOs + Entities
-  ├── core/network            Retrofit + OkHttp + Json
+  ├── core/network            Retrofit + OkHttp
   ├── core/datastore          DataStore preferences
   ├── core/designsystem       Material 3 Theme + Components
   ├── core/ui                 Shared Composables
-  ├── core/navigation         NavHost + Routes
-  ├── core/common             Dispatcher DI + Utilities
+  ├── core/navigation         Routes
+  ├── core/common             Dispatcher DI
   ├── core/testing            Test utilities + Fakes
   ├── feature/home            ★ Sample feature (copy this!)
   ├── feature/settings        Settings placeholder
-  └── sync/work               WorkManager background sync
-
-  Next steps:
-  1. Open in Android Studio
-  2. Replace BASE_URL in core/network/NetworkModule.kt
-  3. Add your features by copying feature/home/ pattern
-  4. Run: claude  (AI agent with full NIA context)
+  └── sync/work               WorkManager sync
 ```
 
-> **You just add features by copying the `feature/home/` pattern.**
+> **Open in Android Studio → Replace `BASE_URL` → Add your features.**
+
+---
+
+## Or Just Copy What You Need
+
+Don't need the full project? Grab individual files:
+
+```bash
+# One skill
+cp -r skills/compose-animation/ your-project/.claude/skills/
+
+# All rules
+cp -r rules/ your-project/.claude/rules/
+
+# Everything
+cp -r rules/ skills/ agents/ your-project/.claude/
+```
+
+---
+
+## What's Inside
+
+### Rules — always loaded, keep your AI on track
+
+| Rule | Enforces |
+|------|----------|
+| [architecture](rules/architecture.md) | Clean Architecture layers, ViewModel / UseCase / Repository |
+| [module-boundary](rules/module-boundary.md) | Feature API/Impl split, dependency direction |
+| [compose-rules](rules/compose-rules.md) | State hoisting, recomposition, side effects |
+| [coroutines](rules/coroutines.md) | Scope, Flow collection, CancellationException |
+| [kotlin-style](rules/kotlin-style.md) | Formatting, naming, null safety |
+| [naming-convention](rules/naming-convention.md) | NIA class/function/resource naming |
+| [testing](rules/testing.md) | Fakes over Mocks, Turbine, AAA pattern |
+| [performance](rules/performance.md) | Recomposition, image loading, startup |
+
+### Skills — on-demand deep knowledge
+
+| Skill | Teaches |
+|-------|---------|
+| [compose-animation](skills/compose-animation/) | 7 animation patterns (visibility, rotation, keyframes, stagger, state machine, canvas, gesture) |
+| [compose-performance](skills/compose-performance/) | Stability, graphicsLayer, derivedStateOf |
+| [compose-navigation](skills/compose-navigation/) | Type-safe routes, adaptive nav |
+| [compose-testing](skills/compose-testing/) | ViewModel / UI / screenshot tests |
+| [compose-migration](skills/compose-migration/) | XML → Compose strategy |
+| [hilt-di](skills/hilt-di/) | @Binds / @Provides, convention plugins |
+| [coroutines-flow](skills/coroutines-flow/) | StateFlow, parallel sync, change-list |
+| [room-offline](skills/room-offline/) | Offline-first, Entity / DTO / Domain mapping |
+
+### Agents — autonomous executors
+
+| Agent | Role |
+|-------|------|
+| [architect](agents/architect.md) | Module design, dependency graph |
+| [coder](agents/coder.md) | Feature implementation |
+| [code-reviewer](agents/code-reviewer.md) | Architecture compliance review |
+| [tester](agents/tester.md) | Unit / UI / screenshot tests |
+
+---
+
+## Architecture
+
+```
+READ:  Room → Repository → UseCase → ViewModel (StateFlow) → Compose UI
+WRITE: UI event → ViewModel → Repository → DataStore / Room
+SYNC:  WorkManager → SyncWorker → Network → Room
+```
 
 <details>
-<summary><b>Generated project structure (click to expand)</b></summary>
+<summary><b>Full project structure</b></summary>
 
 ```
 MyApp/
 ├── app/
-│   ├── build.gradle.kts
-│   └── src/main/
-│       ├── AndroidManifest.xml
-│       └── kotlin/com/example/myapp/
-│           ├── MainApplication.kt          ← @HiltAndroidApp
-│           ├── MainActivity.kt             ← @AndroidEntryPoint
-│           └── AppNavHost.kt               ← Bottom Nav + NavHost routing
+│   └── src/main/kotlin/com/example/myapp/
+│       ├── MainApplication.kt              @HiltAndroidApp
+│       ├── MainActivity.kt                 @AndroidEntryPoint
+│       └── AppNavHost.kt                   Bottom Nav + routing
 │
 ├── core/
-│   ├── model/                              ← Domain data classes (pure Kotlin)
-│   │   └── SampleItem.kt, UserData.kt
-│   │
-│   ├── domain/                             ← UseCases (business logic)
-│   │   └── GetSampleItemsUseCase.kt
-│   │
-│   ├── data/                               ← Repository implementations
-│   │   ├── repository/
-│   │   │   ├── SampleRepository.kt         ← Interface
-│   │   │   └── OfflineFirstSampleRepository.kt  ← Impl (Room + Retrofit)
-│   │   └── di/
-│   │       └── DataModule.kt               ← @Binds + @Provides
-│   │
-│   ├── database/                           ← Room
-│   │   ├── AppDatabase.kt
-│   │   ├── DatabaseModule.kt               ← Hilt @Provides
-│   │   ├── dao/SampleItemDao.kt            ← @Dao (Flow queries)
-│   │   └── model/SampleItemEntity.kt       ← @Entity + mappers
-│   │
-│   ├── network/                            ← Retrofit + OkHttp
-│   │   ├── NetworkModule.kt                ← OkHttp, Retrofit, Json
-│   │   ├── SampleApi.kt                    ← @GET/@POST endpoints
-│   │   └── model/NetworkSampleItem.kt      ← DTO + asExternalModel()
-│   │
-│   ├── datastore/                          ← DataStore preferences
-│   ├── designsystem/                       ← Material 3 theme + components
-│   │   ├── theme/
-│   │   │   ├── Theme.kt                    ← AppTheme (dynamic color)
-│   │   │   └── Type.kt                     ← Typography
-│   │   └── component/
-│   │       ├── LoadingWheel.kt             ← Reusable loading indicator
-│   │       └── DynamicAsyncImage.kt        ← Coil image with loading state
-│   │
-│   ├── navigation/                         ← NavHost, route definitions
-│   ├── ui/                                 ← Shared screen composables
-│   ├── common/                             ← Dispatcher DI, utilities
-│   │   └── Dispatchers.kt                  ← @Dispatcher(IO/Default)
-│   └── testing/                            ← Test utilities, Fakes
+│   ├── model/          SampleItem.kt, UserData.kt
+│   ├── domain/         GetSampleItemsUseCase.kt
+│   ├── data/           OfflineFirstSampleRepository.kt, DataModule.kt
+│   ├── database/       AppDatabase.kt, SampleItemDao.kt, SampleItemEntity.kt
+│   ├── network/        NetworkModule.kt, SampleApi.kt, NetworkSampleItem.kt
+│   ├── designsystem/   Theme.kt, LoadingWheel.kt, DynamicAsyncImage.kt
+│   ├── datastore/      (DataStore preferences)
+│   ├── navigation/     (Routes)
+│   ├── ui/             (Shared composables)
+│   ├── common/         Dispatchers.kt
+│   └── testing/        (Test utilities)
 │
 ├── feature/
-│   ├── home/                               ← ★ Sample feature (copy this!)
-│   │   ├── api/
-│   │   │   └── HomeNavKey.kt               ← @Serializable NavKey
-│   │   └── impl/
-│   │       ├── HomeViewModel.kt            ← @HiltViewModel + StateFlow
-│   │       └── HomeScreen.kt               ← Stateful + Stateless pair
-│   │
+│   ├── home/
+│   │   ├── api/        HomeNavKey.kt
+│   │   └── impl/       HomeViewModel.kt, HomeScreen.kt
 │   └── settings/
-│       └── impl/
-│           └── SettingsScreen.kt           ← Simple settings placeholder
+│       └── impl/       SettingsScreen.kt
 │
-├── sync/
-│   └── work/                               ← WorkManager background sync
+├── sync/work/          (WorkManager sync)
 │
-├── .claude/                                ← AI Agent Harness
-│   ├── rules/     (8 rules)               ← Always-loaded constraints
-│   ├── skills/    (8 skills)              ← On-demand knowledge
-│   └── agents/    (4 agents)              ← Autonomous executors
-│
-├── CLAUDE.md                               ← Project context for AI tools
-├── build.gradle.kts
-├── settings.gradle.kts
-├── gradle/libs.versions.toml              ← Version catalog
-└── gradle.properties                       ← Build optimization flags
+├── .claude/            8 rules + 8 skills + 4 agents
+├── CLAUDE.md
+├── gradle/libs.versions.toml
+└── gradle.properties
 ```
 
 </details>
 
-### Option 1: Copy what you need (easiest)
-
-Browse the `skills/` and `rules/` directories and copy individual files to your project:
-
-```bash
-# Copy a single skill
-cp -r skills/compose-animation/ your-project/.claude/skills/compose-animation/
-
-# Copy a rule
-cp rules/architecture.md your-project/.claude/rules/architecture.md
-```
-
-### Option 2: Copy everything
-
-```bash
-git clone https://github.com/warrenth/nowinandroid-agent-kit.git
-cp -r nowinandroid-agent-kit/rules/ your-project/.claude/rules/
-cp -r nowinandroid-agent-kit/skills/ your-project/.claude/skills/
-cp -r nowinandroid-agent-kit/agents/ your-project/.claude/agents/
-```
-
-### Option 3: Claude Code plugin (coming soon)
-
-```bash
-claude plugin install warrenth/nowinandroid-agent-kit
-```
-
-## What's Included
-
-### Rules (always-loaded constraints)
-
-| Rule | What it enforces |
-|------|-----------------|
-| [architecture.md](rules/architecture.md) | Clean Architecture layers, ViewModel/UseCase/Repository patterns |
-| [module-boundary.md](rules/module-boundary.md) | Feature API/Impl separation, dependency direction |
-| [kotlin-style.md](rules/kotlin-style.md) | Formatting, naming, null safety, idioms |
-| [compose-rules.md](rules/compose-rules.md) | State hoisting, recomposition, side effects, Lazy lists |
-| [coroutines.md](rules/coroutines.md) | Scope management, Flow collection, error handling |
-| [naming-convention.md](rules/naming-convention.md) | NIA naming patterns for classes, functions, resources |
-| [testing.md](rules/testing.md) | Test strategy, Fakes over Mocks, Turbine |
-| [performance.md](rules/performance.md) | Recomposition optimization, image loading, startup |
-
-### Skills (on-demand knowledge)
-
-| Skill | What it teaches |
-|-------|----------------|
-| [compose-animation](skills/compose-animation/) | 7 animation patterns from NIA (visibility, rotation, keyframes, stagger, state machine, canvas, gesture) |
-| [compose-performance](skills/compose-performance/) | Stability, recomposition optimization, graphicsLayer, derivedStateOf |
-| [compose-navigation](skills/compose-navigation/) | Navigation3 with serializable NavKeys, adaptive navigation |
-| [compose-testing](skills/compose-testing/) | ViewModel tests, UI tests, screenshot tests, Fake repositories |
-| [compose-migration](skills/compose-migration/) | XML to Compose migration strategy, component mapping |
-| [hilt-di](skills/hilt-di/) | @Binds/@Provides patterns, module organization, convention plugins |
-| [coroutines-flow](skills/coroutines-flow/) | StateFlow, combine, parallel sync, change-list pattern |
-| [room-offline](skills/room-offline/) | Offline-first with Room, Entity/DTO/Domain mapping, sync |
-
-### Agents (autonomous executors)
-
-| Agent | Model | Role |
-|-------|-------|------|
-| [architect](agents/architect.md) | opus | Module design, dependency graph, data flow |
-| [coder](agents/coder.md) | sonnet | Feature implementation following NIA patterns |
-| [code-reviewer](agents/code-reviewer.md) | opus | Architecture compliance review |
-| [tester](agents/tester.md) | sonnet | Unit tests, UI tests, screenshot tests |
-
-### Templates
-
-| Template | Use |
-|----------|-----|
-| [CLAUDE.md.template](templates/CLAUDE.md.template) | Project CLAUDE.md for NIA-style projects |
-
-## Architecture Overview
-
-Based on NowInAndroid's production architecture:
-
-```
-:app
-├── :feature:*/api          (NavKey exports only)
-├── :feature:*/impl         (ViewModel + Screen)
-├── :core:model             (Domain data classes)
-├── :core:domain            (UseCases, Repository interfaces)
-├── :core:data              (Repository impl, DI modules)
-├── :core:database          (Room DAOs, Entities)
-├── :core:network           (Retrofit, DTOs)
-├── :core:datastore         (Proto DataStore)
-├── :core:designsystem      (Theme, Material 3)
-├── :core:ui                (Shared composables)
-└── :core:navigation        (Navigator, NavKey)
-```
-
-Data flows:
-```
-READ:  Room DAO → Repository → UseCase → ViewModel (StateFlow) → Compose UI
-WRITE: UI event → ViewModel → Repository → DataStore/Room
-SYNC:  WorkManager → SyncWorker → Network → Room (background)
-```
+---
 
 ## NowInAndroid Version
 
-Analysis based on NowInAndroid as of March 2026:
-- AGP 9.0.0, Kotlin 2.3.0
-- Compose BOM 2025.09.01
-- Navigation3, Hilt 2.59, Room 2.8.3
+Derived from NowInAndroid (March 2026): AGP 9.0, Kotlin 2.3, Compose BOM 2025.09, Hilt 2.59, Room 2.8.3, Navigation3.
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Add or improve rules/skills
-4. Submit a pull request
-
-Skills should include code examples from real NowInAndroid source, not generic patterns.
+Fork → branch → add/improve rules or skills → PR.
+All code examples must come from real NowInAndroid source analysis.
 
 ## License
 
